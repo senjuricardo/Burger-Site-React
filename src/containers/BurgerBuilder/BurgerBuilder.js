@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Aux from '../../hoc/Auxs'
 import Burger from "../../components/Layout/Burguer/Burger";
 import BuildControls from "../../components/Layout/Burguer/BuildControls/BuildControls";
@@ -6,6 +6,7 @@ import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Layout/Burguer/OrderSummary/OrderSummay";
 import axios from "../../../src/axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import {useNavigate} from 'react-router-dom'
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -88,29 +89,31 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        //alert('you continue')
-        this.setState({ loading: true });
-        const order = {
-            ingredients: this.state.ingredientes,
-            price: this.state.price,
-            customer: {
-                name: 'Ricardo',
-                address: {
-                    street: 'random street',
-                    zipCOde: '12512',
-                    country: 'Portugal',
-                },
-                email: 'teste@teste.pt'
-            },
-            deliveryMethod: 'fastest'
-        }
-        axios.post('/orders.json', order)
-            .then(response => {
-                this.setState({ loading: false, purchasing: false })
-            })
-            .catch(error => {
-                this.setState({ loading: false, purchasing: false })
-            })
+       // alert('you continue')
+        // this.setState({ loading: true });
+        // const order = {
+        //     ingredients: this.state.ingredientes,
+        //     price: this.state.price,
+        //     customer: {
+        //         name: 'Ricardo',
+        //         address: {
+        //             street: 'random street',
+        //             zipCOde: '12512',
+        //             country: 'Portugal',
+        //         },
+        //         email: 'teste@teste.pt'
+        //     },
+        //     deliveryMethod: 'fastest'
+        // }
+        // axios.post('/orders.json', order)
+        //     .then(response => {
+        //         this.setState({ loading: false, purchasing: false })
+        //     })
+        //     .catch(error => {
+        //         this.setState({ loading: false, purchasing: false })
+        //     })
+        const navigate = useNavigate()
+        navigate("/checkout")
     }
 
     render() {

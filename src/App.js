@@ -7,8 +7,6 @@ function App() {
     <div>
         <Layout>
           <Routes>
-            {/* <Route path="/checkout" component={Checkout}  />
-            <Route path="/" exact component={BurgerBuilder} /> */}
             <Route path="/checkout"  element={<Checkout/>}></Route>
             <Route path="/" exact element={<BurgerBuilder/>}></Route>
          </Routes>
