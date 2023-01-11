@@ -16,31 +16,31 @@ const INGREDIENT_PRICES = {
 }
 class BurgerBuilder extends Component {
     // constructor(props){
-    //     super(props);
-    //     this.state = {...}
-
-    // }
-    state = {
-        ingredientes: null,
-        totalPrice: 3,
-        purchaseable: false,
-        purchasing: false,
-        loading: false,
-    }
-
-    componentDidMount () {
-        axios.get( '/ingredientes.json' )
+        //     super(props);
+        //     this.state = {...}
+        
+        // }
+        state = {
+            ingredientes: null,
+            totalPrice: 3,
+            purchaseable: false,
+            purchasing: false,
+            loading: false,
+        }
+        
+        componentDidMount () {
+            axios.get( '/ingredientes.json' )
             .then( response => { 
                 console.log(response)
-                 this.setState( { ingredientes: response.data } );
+                this.setState( { ingredientes: response.data } );
             } )
             .catch( error => {
                 this.setState( { error: true } );
             } );
-    }
-
-    updatePurchaseState(ingredients) {
-        const sum = Object.keys(ingredients)
+        }
+        
+        updatePurchaseState(ingredients) {
+            const sum = Object.keys(ingredients)
             .map(igKey => {
                 return ingredients[igKey];
             })
@@ -71,10 +71,10 @@ class BurgerBuilder extends Component {
         const updatedCount = oldCount - 1;
         const updatedIngredients = {
             ...this.state.ingredientes
-
+            
         };
         updatedIngredients[type] = updatedCount;
-
+        
         const priceDeduction = INGREDIENT_PRICES[type];
         const oldPrice = this.state.totalPrice;
         const newPrice = oldPrice - priceDeduction;
@@ -87,18 +87,18 @@ class BurgerBuilder extends Component {
     purchaseCancelHandler = () => {
         this.setState({ purchasing: false })
     }
-
+    
     purchaseContinueHandler = () => {
-       // alert('you continue')
+        // alert('you continue')
         // this.setState({ loading: true });
         // const order = {
-        //     ingredients: this.state.ingredientes,
-        //     price: this.state.price,
-        //     customer: {
-        //         name: 'Ricardo',
-        //         address: {
-        //             street: 'random street',
-        //             zipCOde: '12512',
+            //     ingredients: this.state.ingredientes,
+            //     price: this.state.price,
+            //     customer: {
+                //         name: 'Ricardo',
+                //         address: {
+                    //             street: 'random street',
+                    //             zipCOde: '12512',
         //             country: 'Portugal',
         //         },
         //         email: 'teste@teste.pt'
@@ -107,14 +107,15 @@ class BurgerBuilder extends Component {
         // }
         // axios.post('/orders.json', order)
         //     .then(response => {
-        //         this.setState({ loading: false, purchasing: false })
-        //     })
-        //     .catch(error => {
-        //         this.setState({ loading: false, purchasing: false })
-        //     })
-        const navigate = useNavigate()
-        navigate("/checkout")
-    }
+            //         this.setState({ loading: false, purchasing: false })
+            //     })
+            //     .catch(error => {
+                //         this.setState({ loading: false, purchasing: false })
+                //     })
+                
+                const navigate = useNavigate()
+                navigate("/checkout");
+            }
 
     render() {
         const disableInfo = {
