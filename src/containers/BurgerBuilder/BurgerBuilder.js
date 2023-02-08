@@ -21,23 +21,28 @@ class BurgerBuilder extends Component {
         
         // }
         state = {
-            ingredientes: null,
+            ingredientes: {
+                bacon:0,
+                cheese: 0,
+                meat: 0,
+                salad:0
+            },
             totalPrice: 3,
             purchaseable: false,
             purchasing: false,
             loading: false,
         }
         
-        componentDidMount () {
-            axios.get( '/ingredientes.json' )
-            .then( response => { 
-                console.log(response)
-                this.setState( { ingredientes: response.data } );
-            } )
-            .catch( error => {
-                this.setState( { error: true } );
-            } );
-        }
+        // componentDidMount () {
+        //     axios.get( '/ingredientes.json' )
+        //     .then( response => { 
+        //         console.log(response)
+        //         this.setState( { ingredientes: response.data } );
+        //     } )
+        //     .catch( error => {
+        //         this.setState( { error: true } );
+        //     } );
+        // }
         
         updatePurchaseState(ingredients) {
             const sum = Object.keys(ingredients)

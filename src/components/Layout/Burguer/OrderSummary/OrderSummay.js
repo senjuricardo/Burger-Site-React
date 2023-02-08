@@ -10,8 +10,21 @@ const OrderSummary = (props) => {
                 <li key={igKey}><span style={{ textTransform: 'capitalize' }}>{igKey}</span>: {props.ingredients[igKey]} </li>
             )
         })
+        
+        
     const navigateToCheckout = () => {
-        navigate("/checkout");
+        // navigate("/checkout", {
+        //     state:{
+        //         ingredi: 'hello'
+        //     }  
+        // });
+        navigate('/checkout', {
+            state: {
+              ingredient: props.ingredients,
+            }
+          });
+        
+
     }
     return (
         <Aux>
